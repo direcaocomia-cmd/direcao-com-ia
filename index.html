@@ -42,6 +42,11 @@
   .btn.papel:hover{background:#fff}
   .mini{font-size:.9rem;color:var(--cinza)}
   .escuro .mini{color:#C3CCD6}
+  .depois-p{margin:-4px 0 12px}
+  a.depois{font-size:.92rem;color:var(--cinza);text-decoration:underline;text-underline-offset:3px}
+  a.depois:hover{color:var(--marinho)}
+  header a.depois,.escuro a.depois{color:#C3CCD6}
+  header a.depois:hover,.escuro a.depois:hover{color:var(--papel)}
   header{background:var(--marinho);color:var(--papel)}
   nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
   nav .logo{display:flex;align-items:center;gap:12px;font-family:var(--titulo);font-weight:700;font-size:1.15rem;color:var(--papel);text-decoration:none}
@@ -127,6 +132,7 @@
         <h1><span>A IA prepara.</span><br>Você decide.</h1>
         <p class="sub">Seis encontros em três semanas pra fazer a sua escola rodar com inteligência artificial, com um diretor que faz isso na própria escola todo dia.</p>
         <p><a class="btn" href="#lista"><span class="so-lista">Entrar na lista da mentoria fechada</span><span class="so-venda">Garantir minha vaga</span></a></p>
+        <p class="so-venda depois-p"><a class="depois" href="/aula">Ainda não é a hora? Entre na lista e receba a aula aberta</a></p>
         <p class="mini"><span class="so-lista">8 a 12 vagas. Quem está na lista recebe o valor e a data antes de todo mundo.</span><span class="so-venda">8 a 12 vagas. R$ 2.497 em até 12x. Garantia de 7 dias depois do primeiro encontro.</span></p>
         <div class="numeros">
           <div><strong>6 encontros</strong><span>ao vivo, 60 min, gravados</span></div>
@@ -287,7 +293,8 @@
           <h3>Entre na lista da mentoria fechada</h3>
           <p>Quem está na lista recebe o valor e a data primeiro, e escolhe antes.</p>
         </div>
-        <p><a class="btn" id="cta-principal" href="https://wa.me/5584986256365?text=Oi%2C%20Hugo.%20Vi%20a%20p%C3%A1gina%20da%20mentoria%20Escola%20que%20Roda%20e%20quero%20entrar%20na%20lista." target="_blank" rel="noopener"><span class="so-lista">Entrar na lista</span><span class="so-venda">Garantir minha vaga</span></a></p>
+        <p><a class="btn" id="cta-principal" href="/aula"><span class="so-lista">Entrar na lista</span><span class="so-venda">Garantir minha vaga</span></a></p>
+        <p class="so-venda depois-p"><a class="depois" href="/aula">Ainda não é a hora? Entre na lista e receba a aula aberta</a></p>
         <p class="mini"><span class="so-lista">Sem compromisso. Você só decide quando souber o valor e a data.</span><span class="so-venda">Pix ou cartão em até 12x. Nota fiscal. Garantia de 7 dias depois do primeiro encontro.</span></p>
       </div>
     </div>
@@ -311,6 +318,7 @@
   <div class="wrap" style="text-align:center">
     <h2>A sua escola não precisa depender da sua cabeça.</h2>
     <p><a class="btn papel" href="#lista"><span class="so-lista">Entrar na lista da mentoria fechada</span><span class="so-venda">Garantir minha vaga</span></a></p>
+    <p class="so-venda depois-p" style="margin-top:6px"><a class="depois" href="/aula">Ainda não é a hora? Entre na lista e receba a aula aberta</a></p>
     <p class="mini" style="margin-top:14px">Turma de 8 a 12 gestores, pra ter proximidade e acompanhamento de verdade.</p>
   </div>
 </section>
@@ -328,14 +336,15 @@
 <script>
   // O Hugo muda só estas três linhas.
   var MODO = "venda";        // "lista" = pré-venda, botões vão pro WhatsApp | "venda" = botões vão pro checkout
-  var LINK_LISTA = "https://wa.me/5584986256365?text=Oi%2C%20Hugo.%20Vi%20a%20p%C3%A1gina%20da%20mentoria%20Escola%20que%20Roda%20e%20quero%20entrar%20na%20lista.";
+  var LINK_LISTA = "/aula";         // página da aula aberta com o formulário da lista
   var LINK_CHECKOUT = "https://pay.hotmart.com/T108122714X?off=wauxvmzd";    // link do checkout da Hotmart
 
   document.body.classList.add(MODO);
   var link = MODO === "venda" ? LINK_CHECKOUT : LINK_LISTA;
   if (link) {
     document.querySelectorAll('a.btn, a.top').forEach(function (a) {
-      a.href = link; a.target = "_blank"; a.rel = "noopener";
+      a.href = link;
+      if (/^https?:/.test(link)) { a.target = "_blank"; a.rel = "noopener"; }
     });
   }
 </script>
