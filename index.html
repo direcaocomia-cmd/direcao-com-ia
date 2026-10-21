@@ -281,7 +281,7 @@
         <div id="bloco-preco" class="so-venda">
           <div class="riscado">Turmas seguintes: R$ 3.497</div>
           <div class="valor">R$ 2.497</div>
-          <p class="mini">à vista, ou em até 12x no cartão</p>
+          <p class="mini">à vista, ou 12x de R$ 258,25 no cartão</p>
         </div>
         <div id="bloco-lista" class="so-lista">
           <h3>Entre na lista da mentoria fechada</h3>
@@ -327,9 +327,9 @@
 
 <script>
   // O Hugo muda só estas três linhas.
-  var MODO = "lista";        // "lista" = pré-venda, botões vão pro WhatsApp | "venda" = botões vão pro checkout
+  var MODO = "venda";        // "lista" = pré-venda, botões vão pro WhatsApp | "venda" = botões vão pro checkout
   var LINK_LISTA = "https://wa.me/5584986256365?text=Oi%2C%20Hugo.%20Vi%20a%20p%C3%A1gina%20da%20mentoria%20Escola%20que%20Roda%20e%20quero%20entrar%20na%20lista.";
-  var LINK_CHECKOUT = "";    // link do checkout da Hotmart
+  var LINK_CHECKOUT = "https://pay.hotmart.com/T108122714X?off=wauxvmzd";    // link do checkout da Hotmart
 
   document.body.classList.add(MODO);
   var link = MODO === "venda" ? LINK_CHECKOUT : LINK_LISTA;
