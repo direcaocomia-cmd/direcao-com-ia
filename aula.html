@@ -73,6 +73,18 @@ footer a{color:#C3CCD6}
 @media (max-width:820px){.hero{grid-template-columns:1fr;gap:28px}ol.lista{columns:1}}
 @media (max-width:480px){.duas{grid-template-columns:1fr}}
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1677720317119786');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1677720317119786&ev=PageView&noscript=1"></noscript>
+<!-- fim Meta Pixel -->
 </head>
 <body>
 <header>
@@ -129,6 +141,7 @@ footer a{color:#C3CCD6}
     if (!f.querySelector("#f-tam").value) { ev.preventDefault(); return falha("Escolha o tamanho da escola."); }
     b.disabled = true; b.textContent = "Enviando...";
     enviado = true;
+    if (window.fbq) fbq('track','Lead',{content_name:'Aula aberta 18-11'});
     setTimeout(function () { location.href = "obrigado-aula.html"; }, 4000);
   });
   document.getElementById("envio").addEventListener("load", function () {
@@ -154,7 +167,7 @@ footer a{color:#C3CCD6}
     <p class="regra">As telas são de uma escola modelo, com números fictícios. O método é o mesmo que roda na minha escola.</p>
     <div class="vagas">
       <p><strong>As vagas da turma inicial já estão abertas.</strong> Seis encontros, de 24/11 a 10/12, terça e quinta. 8 a 12 vagas, fecham segunda, 23/11.</p>
-      <p style="margin:0">Se já sabe que é pra você, <a class="link" href="https://pay.hotmart.com/T108122714X" target="_blank" rel="noopener">garanta sua vaga</a>. Se quer ver antes, a aula é pra isso.</p>
+      <p style="margin:0">Se já sabe que é pra você, <a class="link" onclick="if(window.fbq)fbq('track','InitiateCheckout',{content_name:'Mentoria Escola que Roda',value:2497,currency:'BRL'})" href="https://pay.hotmart.com/T108122714X" target="_blank" rel="noopener">garanta sua vaga</a>. Se quer ver antes, a aula é pra isso.</p>
     </div>
   </div>
 </main>
