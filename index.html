@@ -287,7 +287,7 @@
           <h3>Entre na lista da mentoria fechada</h3>
           <p>Quem está na lista recebe o valor e a data primeiro, e escolhe antes.</p>
         </div>
-        <p><a class="btn" id="cta-principal" href="mailto:contato@direcaocomia.com?subject=Lista%20da%20mentoria%20fechada"><span class="so-lista">Entrar na lista</span><span class="so-venda">Garantir minha vaga</span></a></p>
+        <p><a class="btn" id="cta-principal" href="https://wa.me/5584986256365?text=Oi%2C%20Hugo.%20Vi%20a%20p%C3%A1gina%20da%20mentoria%20Escola%20que%20Roda%20e%20quero%20entrar%20na%20lista." target="_blank" rel="noopener"><span class="so-lista">Entrar na lista</span><span class="so-venda">Garantir minha vaga</span></a></p>
         <p class="mini"><span class="so-lista">Sem compromisso. Você só decide quando souber o valor e a data.</span><span class="so-venda">Pix ou cartão em até 12x. Nota fiscal. Garantia de 7 dias.</span></p>
       </div>
     </div>
@@ -327,15 +327,16 @@
 
 <script>
   // O Hugo muda só estas três linhas.
-  var MODO = "lista";        // "lista" = pré-venda com lista de espera | "venda" = checkout aberto
-  var LINK_LISTA = "";       // formulário da lista de espera (vazio = abre e-mail pra contato@)
+  var MODO = "lista";        // "lista" = pré-venda, botões vão pro WhatsApp | "venda" = botões vão pro checkout
+  var LINK_LISTA = "https://wa.me/5584986256365?text=Oi%2C%20Hugo.%20Vi%20a%20p%C3%A1gina%20da%20mentoria%20Escola%20que%20Roda%20e%20quero%20entrar%20na%20lista.";
   var LINK_CHECKOUT = "";    // link do checkout da Hotmart
 
   document.body.classList.add(MODO);
   var link = MODO === "venda" ? LINK_CHECKOUT : LINK_LISTA;
   if (link) {
-    var cta = document.getElementById('cta-principal');
-    cta.href = link; cta.target = "_blank"; cta.rel = "noopener";
+    document.querySelectorAll('a.btn, a.top').forEach(function (a) {
+      a.href = link; a.target = "_blank"; a.rel = "noopener";
+    });
   }
 </script>
 </body>
