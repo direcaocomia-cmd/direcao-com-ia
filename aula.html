@@ -139,6 +139,7 @@ fbq('track','PageView');
   <input id="f-whats" type="tel" name="entry.1859640587" autocomplete="tel" inputmode="tel">
   <input type="hidden" name="entry.1080621130" value="sim">
   <input type="hidden" name="entry.546314334" id="f-origem" value="aula">
+  <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label for="f-site">Site da empresa (deixe em branco)</label><input id="f-site" type="text" tabindex="-1" autocomplete="off"></div>
   <button class="btn" type="submit" id="f-botao">Quero participar</button>
   <p class="depois">O link da sala chega no seu e-mail no dia da aula.</p>
   <div class="erro" id="f-erro" role="alert"></div>
@@ -149,7 +150,7 @@ fbq('track','PageView');
 (function () {
   var f = document.getElementById("cap"), b = document.getElementById("f-botao"),
       erro = document.getElementById("f-erro"), origem = document.getElementById("f-origem"),
-      enviado = false;
+      enviado = false, inicio = Date.now();
   var q = new URLSearchParams(location.search), extra = [];
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { if (q.get(k)) extra.push(k.replace("utm_", "") + "=" + q.get(k)); });
   if (document.referrer && document.referrer.indexOf(location.host) < 0) {
@@ -159,7 +160,15 @@ fbq('track','PageView');
   function falha(msg) { erro.textContent = msg; erro.style.display = "block"; }
   f.addEventListener("submit", function (ev) {
     erro.style.display = "none";
-    var nome = f.querySelector("#f-nome").value.trim(), email = f.querySelector("#f-email").value.trim();
+    // Anti-robô: campo escondido preenchido ou envio em menos de 3 s depois de abrir a página.
+    // O cadastro não vai para a planilha; a pessoa (ou o robô) vê o mesmo "Enviando..." e a página de obrigado.
+    if (f.querySelector("#f-site").value || Date.now() - inicio < 3000) {
+      ev.preventDefault();
+      b.disabled = true; b.textContent = "Enviando...";
+      setTimeout(function () { location.href = "obrigado-aula.html"; }, 1500);
+      return;
+    }
+    var nome =f.querySelector("#f-nome").value.trim(), email = f.querySelector("#f-email").value.trim();
     if (!nome) { ev.preventDefault(); return falha("Escreva o seu nome."); }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { ev.preventDefault(); return falha("Confira o e-mail. Ele precisa ter @ e domínio."); }
     b.disabled = true; b.textContent = "Enviando...";
